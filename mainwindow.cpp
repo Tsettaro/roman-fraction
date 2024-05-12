@@ -13,6 +13,10 @@ int check_correct (const string &text){
     return 0;
 }
 
+int is_real(int a, int b){
+    return a < 4000 && b < 4000;
+}
+
 int MainWindow::check_correct_input(){
     return (check_correct(ui->textEdit->toPlainText().toUtf8().constData()) &&
             check_correct(ui->textEdit_2->toPlainText().toUtf8().constData()) &&

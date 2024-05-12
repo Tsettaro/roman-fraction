@@ -1,5 +1,6 @@
 #include "Roman.h"
 
+/* Math functions */
 int gcd (int a, int b) {
     while (b) {
         a %= b;
