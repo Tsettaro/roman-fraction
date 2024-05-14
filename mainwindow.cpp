@@ -95,4 +95,3 @@ void MainWindow::on_pushButton_4_clicked(){
         QMessageBox::critical(this, "ВНИМАНИЕ!", "Ошибка при вводе дробей!");
     }
 }
-

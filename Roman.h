@@ -39,19 +39,8 @@ private:
     int romanToArabic(string &);
     string arabicToRoman(int);
 public:
-    RomanFraction(string roman_num, string roman_denom) {
-        numerator = roman_num;
-        denominator = roman_denom;
-        if (numerator[0] == denominator[0] && denominator[0] == '-'){
-            numerator = numerator.substr(1);
-            denominator = denominator.substr(1);
-        }
-        else if (numerator[0] != denominator[0] && denominator[0] == '-'){
-            denominator = denominator.substr(1);
-            numerator = '-' + numerator;
-        }
-    };
-    RomanFraction(int n, int d) : numerator(arabicToRoman(n)), denominator(arabicToRoman(d)){};
+    RomanFraction(string, string);
+    RomanFraction(int, int);
 
     RomanFraction operator *(RomanFraction&);
     RomanFraction operator /(RomanFraction&);

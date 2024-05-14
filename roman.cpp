@@ -1,7 +1,31 @@
 #include "Roman.h"
 
+/* Constructors */
+RomanFraction::RomanFraction(int n, int d){
+    if (d < 0){
+        d = -d, n = -n;
+    }
+    numerator = arabicToRoman(n);
+    denominator = arabicToRoman(d);
+}
+
+RomanFraction::RomanFraction(string roman_num, string roman_denom){
+    numerator = roman_num;
+    denominator = roman_denom;
+    if (numerator[0] == denominator[0] && denominator[0] == '-'){
+        numerator = numerator.substr(1);
+        denominator = denominator.substr(1);
+    }
+    else if (numerator[0] != denominator[0] && denominator[0] == '-'){
+        denominator = denominator.substr(1);
+        numerator = '-' + numerator;
+    }
+}
+/* Constructors */
+
 /* Math functions */
 int gcd (int a, int b) {
+    if (a == 0 || b == 0) return 1;
     while (b) {
         a %= b;
         swap(a, b);
@@ -56,19 +80,18 @@ string RomanFraction::arabicToRoman(int number) {
 
 RomanFraction RomanFraction::operator +(RomanFraction& other){
     int um = lcm(abs(romanToArabic(denominator)), abs(romanToArabic(other.denominator)));
-    int n_ar = romanToArabic(numerator) * (um / abs(romanToArabic(denominator))),
-        o_ar = romanToArabic(other.numerator) * (um / abs(romanToArabic(other.denominator)));
-    int _gcd = gcd(n_ar + o_ar, um);
-    if (n_ar + o_ar != 0) return RomanFraction((n_ar + o_ar) / _gcd, um / _gcd);
+    int n_ar = romanToArabic(numerator) * (um / abs(romanToArabic(denominator)))
+               + romanToArabic(other.numerator) * (um / abs(romanToArabic(other.denominator)));
 
-    return RomanFraction(n_ar + o_ar, um);
+    int _gcd = abs(gcd(n_ar, um));
+    return RomanFraction(n_ar / _gcd, um / _gcd);
 }
 
 RomanFraction RomanFraction::operator -(RomanFraction& other){
     int um = lcm(abs(romanToArabic(denominator)), abs(romanToArabic(other.denominator)));
     int n_ar = romanToArabic(numerator) * (um / abs(romanToArabic(denominator))),
         o_ar = romanToArabic(other.numerator) * (um / abs(romanToArabic(other.denominator)));
-    int _gcd = gcd(n_ar - o_ar, um);
+    int _gcd = abs(gcd(n_ar - o_ar, um));
     if (n_ar - o_ar != 0) return RomanFraction((n_ar - o_ar) / _gcd, um / _gcd);
 
     return RomanFraction((n_ar - o_ar), um);
@@ -77,17 +100,15 @@ RomanFraction RomanFraction::operator -(RomanFraction& other){
 RomanFraction RomanFraction::operator *(RomanFraction& other){
     int n_ar = romanToArabic(numerator) * abs(romanToArabic(other.numerator)),
         o_ar = romanToArabic(other.denominator) * abs(romanToArabic(denominator));
-    int _gcd = gcd(n_ar, o_ar);
+    int _gcd = abs(gcd(n_ar, o_ar));
     if (n_ar != 0) return RomanFraction(n_ar / _gcd, o_ar / _gcd);
-
     return RomanFraction(n_ar, o_ar);
 }
 
 RomanFraction RomanFraction::operator /(RomanFraction& other){
     int n_ar = romanToArabic(numerator) * abs(romanToArabic(other.denominator)),
         o_ar = romanToArabic(other.numerator) * abs(romanToArabic(denominator));
-    int _gcd = gcd(n_ar, o_ar);
+    int _gcd = abs(gcd(n_ar, o_ar));
     if (n_ar != 0) return RomanFraction(n_ar / _gcd, o_ar / _gcd);
-
     return RomanFraction(n_ar, o_ar);
 }
