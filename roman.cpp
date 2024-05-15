@@ -36,6 +36,7 @@ int gcd (int a, int b) {
 int lcm (int a, int b) {
     return a / gcd (a, b) * b;
 }
+/* Math functions */
 
 ostream& operator<<(ostream& os, RomanFraction& fraction){
     os << fraction.numerator << "/" << fraction.denominator;
@@ -43,10 +44,13 @@ ostream& operator<<(ostream& os, RomanFraction& fraction){
 }
 
 string RomanFraction::fraction(){
+    if (abs(romanToArabic(numerator)) > 3999 ||
+        abs(romanToArabic(denominator)) > 3999) return "ERROR";
     if (numerator == "") return "NULL";
     return numerator + "/" + denominator;
 }
 
+/* Convert functions */
 int RomanFraction::romanToArabic(string &roman){
     int arabic = 0, i = 0;
     if (roman[0] == '-') i = 1;
@@ -77,7 +81,9 @@ string RomanFraction::arabicToRoman(int number) {
     if (flag) return '-' + result;
     return result;
 }
+/* Convert functions */
 
+/* Operators */
 RomanFraction RomanFraction::operator +(RomanFraction& other){
     int um = lcm(abs(romanToArabic(denominator)), abs(romanToArabic(other.denominator)));
     int n_ar = romanToArabic(numerator) * (um / abs(romanToArabic(denominator)))
@@ -112,3 +118,4 @@ RomanFraction RomanFraction::operator /(RomanFraction& other){
     if (n_ar != 0) return RomanFraction(n_ar / _gcd, o_ar / _gcd);
     return RomanFraction(n_ar, o_ar);
 }
+/* Operators */
