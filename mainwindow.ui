@@ -282,7 +282,7 @@
      <rect>
       <x>230</x>
       <y>340</y>
-      <width>204</width>
+      <width>235</width>
       <height>80</height>
      </rect>
     </property>
@@ -308,6 +308,19 @@
       </widget>
      </item>
     </layout>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>368</y>
+      <width>95</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Сократить</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -4,16 +4,14 @@
 #include "Roman.h"
 #include <regex>
 
+bool is_checked = false;
+
 int check_correct (const string &text){
     string pattern = "^-?M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})";
     if (text == "") return 0;
     regex roman_fraction(pattern);
     if (regex_match(text, roman_fraction)) return 1;
     return 0;
-}
-
-int is_real(int a, int b){
-    return a < 4000 && b < 4000;
 }
 
 int MainWindow::check_correct_input(){
@@ -59,7 +57,6 @@ void MainWindow::on_pushButton_2_clicked(){
     }
 }
 
-
 void MainWindow::on_pushButton_3_clicked(){
     if (check_correct_input()){
         unique_ptr <RomanFraction> fr1(new RomanFraction(ui->textEdit->toPlainText().toStdString(),
@@ -86,3 +83,8 @@ void MainWindow::on_pushButton_4_clicked(){
         QMessageBox::critical(this, "ВНИМАНИЕ!", "Ошибка при вводе дробей!");
     }
 }
+
+void MainWindow::on_checkBox_stateChanged(int arg1){
+    is_checked = arg1;
+}
+
