@@ -32,5 +32,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     int check_correct_input();
+    void checkbox_detect();
 };
 #endif // MAINWINDOW_H
