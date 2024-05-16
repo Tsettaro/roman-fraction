@@ -5,6 +5,7 @@
 #include <regex>
 
 bool is_checked = false;
+bool is_checked2 = false;
 
 int check_correct (const string &text){
     string pattern = "^-?M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})";
@@ -86,5 +87,11 @@ void MainWindow::on_pushButton_4_clicked(){
 
 void MainWindow::on_checkBox_stateChanged(int arg1){
     is_checked = arg1;
+}
+
+
+void MainWindow::on_checkBox_2_stateChanged(int arg1)
+{
+    is_checked2 = arg1;
 }
 
