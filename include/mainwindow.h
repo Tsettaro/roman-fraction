@@ -33,5 +33,6 @@ private:
     Ui::MainWindow *ui;
     int check_correct_input();
     void checkbox_detect();
+    void error();
 };
 #endif // MAINWINDOW_H

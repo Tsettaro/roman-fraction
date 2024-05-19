@@ -1,5 +1,5 @@
 #include "../include/Roman.h"
-extern bool is_checked, is_checked2;
+extern bool red, normal;
 
 /* Constructors */
 RomanFraction::RomanFraction(int n, int d){
@@ -45,10 +45,10 @@ ostream& operator<<(ostream& os, RomanFraction& fraction){
 }
 
 string RomanFraction::fraction(){
-    if (abs(romanToArabic(numerator)) > 3999 ||
-        abs(romanToArabic(denominator)) > 3999) return "ERROR";
     if (numerator == "") return "NULL";
-    if (is_checked2) {
+    else if (abs(romanToArabic(numerator)) > 3999 ||
+        abs(romanToArabic(denominator)) > 3999) return "Sorry, but i can't return\nroman fraction";
+    if (normal) {
         return to_string(romanToArabic(numerator)) + "/" +  to_string(romanToArabic(denominator));
     }
     return numerator + "/" + denominator;
@@ -94,7 +94,7 @@ RomanFraction RomanFraction::operator +(RomanFraction& other){
                + romanToArabic(other.numerator) * (um / abs(romanToArabic(other.denominator)));
 
     int _gcd = abs(gcd(n_ar, um));
-    if (n_ar != 0 && is_checked) return RomanFraction(n_ar / _gcd, um / _gcd);
+    if (n_ar != 0 && red) return RomanFraction(n_ar / _gcd, um / _gcd);
     return RomanFraction(n_ar, um);
 }
 
@@ -103,7 +103,7 @@ RomanFraction RomanFraction::operator -(RomanFraction& other){
     int num = romanToArabic(numerator) * (_lcm / romanToArabic(denominator)),
         other_num = romanToArabic(other.numerator) * (_lcm / romanToArabic(other.denominator));
     int _gcd = abs(gcd(num - other_num, _lcm));
-    if (num - other_num != 0 && is_checked) return RomanFraction((num - other_num) / _gcd, _lcm / _gcd);
+    if (num - other_num != 0 && red) return RomanFraction((num - other_num) / _gcd, _lcm / _gcd);
     return RomanFraction((num - other_num), _lcm);
 }
 
@@ -111,7 +111,7 @@ RomanFraction RomanFraction::operator *(RomanFraction& other){
     int n_ar = romanToArabic(numerator) * romanToArabic(other.numerator),
         o_ar = romanToArabic(other.denominator) * romanToArabic(denominator);
     int _gcd = gcd(abs(n_ar), abs(o_ar));
-    if (n_ar != 0 && is_checked) return RomanFraction(n_ar / _gcd, o_ar / _gcd);
+    if (n_ar != 0 && red) return RomanFraction(n_ar / _gcd, o_ar / _gcd);
     return RomanFraction(n_ar, o_ar);
 }
 
@@ -119,7 +119,7 @@ RomanFraction RomanFraction::operator /(RomanFraction& other){
     int n_ar = romanToArabic(numerator) * romanToArabic(other.denominator),
         o_ar = romanToArabic(other.numerator) * romanToArabic(denominator);
     int _gcd = gcd(abs(n_ar), abs(o_ar));
-    if (n_ar != 0 && is_checked) return RomanFraction(n_ar / _gcd, o_ar / _gcd);
+    if (n_ar != 0 && red) return RomanFraction(n_ar / _gcd, o_ar / _gcd);
     return RomanFraction(n_ar, o_ar);
 }
 /* Operators */

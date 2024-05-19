@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Roman VERSION 1.0 LANGUAGES CXX)
+project(Roman VERSION 1.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -16,7 +16,7 @@ set(PROJECT_SOURCES
         ./src/main.cpp
         ./src/mainwindow.cpp
         ./include/mainwindow.h
-        mainwindow.ui
+        ./src/mainwindow.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

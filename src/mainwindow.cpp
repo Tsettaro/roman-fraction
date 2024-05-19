@@ -1,11 +1,12 @@
 #include "../include/mainwindow.h"
-#include "ui_mainwindow.h"
-#include <QMessageBox>
 #include "../include/Roman.h"
+#include "ui_mainwindow.h"
+
+#include <QMessageBox>
 #include <regex>
 
-bool is_checked = false;
-bool is_checked2 = false;
+bool red = false;
+bool normal = false;
 
 int last_clicked = 0;
 
@@ -15,6 +16,10 @@ int check_correct (const string &text){
     regex roman_fraction(pattern);
     if (regex_match(text, roman_fraction)) return 1;
     return 0;
+}
+
+void MainWindow::error(){
+    QMessageBox::critical(this, "ВНИМАНИЕ!", "Ошибка при вводе дробей!");
 }
 
 int MainWindow::check_correct_input(){
@@ -40,11 +45,11 @@ void MainWindow::on_pushButton_clicked(){
                           ui->textEdit_2->toPlainText().toStdString()));
         unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
                           ui->textEdit_6->toPlainText().toStdString()));
-        last_clicked = 1;
         RomanFraction fr3 = *fr1 + *fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
+        last_clicked = 1;
     } else{
-        QMessageBox::critical(this, "ВНИМАНИЕ!", "Ошибка при вводе дробей!");
+        error();
     }
 }
 
@@ -55,10 +60,10 @@ void MainWindow::on_pushButton_2_clicked(){
         unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
                                                              ui->textEdit_6->toPlainText().toStdString()));
         RomanFraction fr3 = *fr1 - *fr2;
-        last_clicked = 2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
+        last_clicked = 2;
     } else{
-        QMessageBox::critical(this, "ВНИМАНИЕ!", "Ошибка при вводе дробей!");
+        error();
     }
 }
 
@@ -69,10 +74,10 @@ void MainWindow::on_pushButton_3_clicked(){
         unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
                                                         ui->textEdit_6->toPlainText().toStdString()));
         RomanFraction fr3 = *fr1 * *fr2;
-        last_clicked = 3;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
+        last_clicked = 3;
     } else{
-        QMessageBox::critical(this, "ВНИМАНИЕ!", "Ошибка при вводе дробей!");
+        error();
     }
 }
 
@@ -83,20 +88,20 @@ void MainWindow::on_pushButton_4_clicked(){
         unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
                                                         ui->textEdit_6->toPlainText().toStdString()));
         RomanFraction fr3 = *fr1 / *fr2;
-        last_clicked = 4;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
-    } else{
-        QMessageBox::critical(this, "ВНИМАНИЕ!", "Ошибка при вводе дробей!");
+        last_clicked = 4;
+    } else {
+        error();
     }
 }
 
 void MainWindow::on_checkBox_stateChanged(int arg1){
-    is_checked = arg1;
+    red = arg1;
     checkbox_detect();
 }
 
 void MainWindow::on_checkBox_2_stateChanged(int arg1){
-    is_checked2 = arg1;
+    normal = arg1;
     checkbox_detect();
 }
 
@@ -110,5 +115,6 @@ void MainWindow::checkbox_detect(){
         break;
     case 4: on_pushButton_4_clicked();
         break;
+    default: break;
     }
 }
