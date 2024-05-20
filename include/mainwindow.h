@@ -17,17 +17,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 private slots:
-    void on_pushButton_clicked();
+    void on_plus_clicked();
+    void on_minus_clicked();
+    void on_multi_clicked();
+    void on_divide_clicked();
 
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_4_clicked();
-
-    void on_checkBox_stateChanged(int arg1);
-
-    void on_checkBox_2_stateChanged(int arg1);
+    void on_standart_form_stateChanged(int arg1);
+    void on_checkBox_divide_stateChanged(int arg1);
 
 private:
     Ui::MainWindow *ui;

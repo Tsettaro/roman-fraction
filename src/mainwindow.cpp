@@ -5,14 +5,16 @@
 #include <QMessageBox>
 #include <regex>
 
-bool red = false;
+bool is_reduced = false;
 bool normal = false;
 
 int last_clicked = 0;
 
 int check_correct (const string &text){
-    string pattern = "^-?M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})";
-    if (text == "") return 0;
+    // Regular expression pattern to match valid Roman numerals
+    const string pattern = "^-?M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})";
+    
+    if (text.empty()) return 0;
     regex roman_fraction(pattern);
     if (regex_match(text, roman_fraction)) return 1;
     return 0;
@@ -39,7 +41,7 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked(){
+void MainWindow::on_plus_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
@@ -53,7 +55,7 @@ void MainWindow::on_pushButton_clicked(){
     }
 }
 
-void MainWindow::on_pushButton_2_clicked(){
+void MainWindow::on_minus_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
@@ -67,7 +69,7 @@ void MainWindow::on_pushButton_2_clicked(){
     }
 }
 
-void MainWindow::on_pushButton_3_clicked(){
+void MainWindow::on_multi_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
@@ -81,7 +83,7 @@ void MainWindow::on_pushButton_3_clicked(){
     }
 }
 
-void MainWindow::on_pushButton_4_clicked(){
+void MainWindow::on_divide_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
@@ -95,25 +97,26 @@ void MainWindow::on_pushButton_4_clicked(){
     }
 }
 
-void MainWindow::on_checkBox_stateChanged(int arg1){
-    red = arg1;
+
+void MainWindow::on_standart_form_stateChanged(int arg1){
+    normal = arg1;
     checkbox_detect();
 }
 
-void MainWindow::on_checkBox_2_stateChanged(int arg1){
-    normal = arg1;
+void MainWindow::on_checkBox_divide_stateChanged(int arg1){
+    is_reduced = arg1;
     checkbox_detect();
 }
 
 void MainWindow::checkbox_detect(){
     switch (last_clicked){
-    case 1: on_pushButton_clicked();
+    case 1: on_plus_clicked();
         break;
-    case 2: on_pushButton_2_clicked();
+    case 2: on_minus_clicked();
         break;
-    case 3: on_pushButton_3_clicked();
+    case 3: on_multi_clicked();
         break;
-    case 4: on_pushButton_4_clicked();
+    case 4: on_divide_clicked();
         break;
     default: break;
     }
