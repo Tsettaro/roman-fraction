@@ -48,8 +48,6 @@ public:
     RomanFraction operator +=(RomanFraction&);
     RomanFraction operator -(RomanFraction&);
 
-    friend ostream& operator<<(ostream&, RomanFraction&);
-
     string fraction();
 };
 

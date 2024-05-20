@@ -41,11 +41,11 @@ MainWindow::~MainWindow(){
 
 void MainWindow::on_pushButton_clicked(){
     if (check_correct_input()){
-        unique_ptr <RomanFraction> fr1(new RomanFraction(ui->textEdit->toPlainText().toStdString(),
-                          ui->textEdit_2->toPlainText().toStdString()));
-        unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
-                          ui->textEdit_6->toPlainText().toStdString()));
-        RomanFraction fr3 = *fr1 + *fr2;
+        RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
+                          ui->textEdit_2->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
+                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr3 = fr1 + fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 1;
     } else{
@@ -55,11 +55,11 @@ void MainWindow::on_pushButton_clicked(){
 
 void MainWindow::on_pushButton_2_clicked(){
     if (check_correct_input()){
-        unique_ptr <RomanFraction> fr1(new RomanFraction(ui->textEdit->toPlainText().toStdString(),
-                                                             ui->textEdit_2->toPlainText().toStdString()));
-        unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
-                                                             ui->textEdit_6->toPlainText().toStdString()));
-        RomanFraction fr3 = *fr1 - *fr2;
+        RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
+                          ui->textEdit_2->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
+                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr3 = fr1 - fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 2;
     } else{
@@ -69,11 +69,11 @@ void MainWindow::on_pushButton_2_clicked(){
 
 void MainWindow::on_pushButton_3_clicked(){
     if (check_correct_input()){
-        unique_ptr <RomanFraction> fr1(new RomanFraction(ui->textEdit->toPlainText().toStdString(),
-                                                        ui->textEdit_2->toPlainText().toStdString()));
-        unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
-                                                        ui->textEdit_6->toPlainText().toStdString()));
-        RomanFraction fr3 = *fr1 * *fr2;
+        RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
+                          ui->textEdit_2->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
+                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr3 = fr1 * fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 3;
     } else{
@@ -83,11 +83,11 @@ void MainWindow::on_pushButton_3_clicked(){
 
 void MainWindow::on_pushButton_4_clicked(){
     if (check_correct_input()){
-        unique_ptr <RomanFraction> fr1(new RomanFraction(ui->textEdit->toPlainText().toStdString(),
-                                                        ui->textEdit_2->toPlainText().toStdString()));
-        unique_ptr <RomanFraction> fr2(new RomanFraction(ui->textEdit_5->toPlainText().toStdString(),
-                                                        ui->textEdit_6->toPlainText().toStdString()));
-        RomanFraction fr3 = *fr1 / *fr2;
+        RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
+                          ui->textEdit_2->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
+                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr3 = fr1 / fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 4;
     } else {
