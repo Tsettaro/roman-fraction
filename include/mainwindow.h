@@ -5,12 +5,11 @@
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow{
     Q_OBJECT
 
 public:
@@ -22,8 +21,8 @@ private slots:
     void on_multi_clicked();
     void on_divide_clicked();
 
-    void on_standart_form_stateChanged(int arg1);
-    void on_checkBox_divide_stateChanged(int arg1);
+    void on_standart_form_stateChanged(int);
+    void on_checkBox_divide_stateChanged(int);
 
 private:
     Ui::MainWindow *ui;

@@ -13,7 +13,7 @@ int last_clicked = 0;
 int check_correct (const string &text){
     // Regular expression pattern to match valid Roman numerals
     const string pattern = "^-?M{0,4}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})";
-    
+
     if (text.empty()) return 0;
     regex roman_fraction(pattern);
     if (regex_match(text, roman_fraction)) return 1;
@@ -30,10 +30,7 @@ int MainWindow::check_correct_input(){
             check_correct(ui->textEdit_5->toPlainText().toStdString()) &&
             check_correct(ui->textEdit_6->toPlainText().toStdString()) == 1);
 }
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
 }
 

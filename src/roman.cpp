@@ -94,7 +94,8 @@ RomanFraction RomanFraction::operator +(RomanFraction& other){
                + romanToArabic(other.numerator) * (_lcm / abs(romanToArabic(other.denominator)));
 
     int _gcd = abs(gcd(n_ar, _lcm));
-    if (n_ar != 0 && is_reduced) return RomanFraction(n_ar / _gcd, _lcm / _gcd);
+    if (n_ar != 0 && is_reduced)
+        return RomanFraction(n_ar / _gcd, _lcm / _gcd);
     return RomanFraction(n_ar, _lcm);
 }
 
@@ -105,7 +106,8 @@ RomanFraction RomanFraction::operator -(RomanFraction& other){
     other_num = romanToArabic(other.numerator) * (_lcm / romanToArabic(other.denominator));
 
     int _gcd = abs(gcd(num - other_num, _lcm));
-    if (num - other_num != 0 && is_reduced) return RomanFraction((num - other_num) / _gcd, _lcm / _gcd);
+    if (num - other_num != 0 && is_reduced)
+        return RomanFraction((num - other_num) / _gcd, _lcm / _gcd);
     return RomanFraction((num - other_num), _lcm);
 }
 
@@ -114,7 +116,8 @@ RomanFraction RomanFraction::operator *(RomanFraction& other){
         d = romanToArabic(other.denominator) * romanToArabic(denominator);
 
     int _gcd = gcd(abs(n), abs(d));
-    if (n != 0 && is_reduced) return RomanFraction(n / _gcd, d / _gcd);
+    if (n != 0 && is_reduced)
+        return RomanFraction(n / _gcd, d / _gcd);
     return RomanFraction(n, d);
 }
 
@@ -123,7 +126,8 @@ RomanFraction RomanFraction::operator /(RomanFraction& other){
         d = romanToArabic(other.numerator) * romanToArabic(denominator);
 
     int _gcd = gcd(abs(n), abs(d));
-    if (n != 0 && is_reduced) return RomanFraction(n / _gcd, d / _gcd);
+    if (n != 0 && is_reduced)
+        return RomanFraction(n / _gcd, d / _gcd);
     return RomanFraction(n, d);
 }
 /* Operators */
