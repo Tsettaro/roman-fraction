@@ -44,7 +44,6 @@ public:
     RomanFraction operator *(RomanFraction&);
     RomanFraction operator /(RomanFraction&);
     RomanFraction operator +(RomanFraction&);
-    RomanFraction operator +=(RomanFraction&);
     RomanFraction operator -(RomanFraction&);
 
     string fraction();

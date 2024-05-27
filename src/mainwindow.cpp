@@ -27,8 +27,8 @@ void MainWindow::error(){
 int MainWindow::check_correct_input(){
     return (check_correct(ui->textEdit->toPlainText().toStdString()) &&
             check_correct(ui->textEdit_2->toPlainText().toStdString()) &&
-            check_correct(ui->textEdit_5->toPlainText().toStdString()) &&
-            check_correct(ui->textEdit_6->toPlainText().toStdString()) == 1);
+            check_correct(ui->textEdit_3->toPlainText().toStdString()) &&
+            check_correct(ui->textEdit_4->toPlainText().toStdString()) == 1);
 }
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
@@ -42,8 +42,8 @@ void MainWindow::on_plus_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
-        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
-                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_3->toPlainText().toStdString(),
+                          ui->textEdit_4->toPlainText().toStdString());
         RomanFraction fr3 = fr1 + fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 1;
@@ -56,8 +56,8 @@ void MainWindow::on_minus_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
-        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
-                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_3->toPlainText().toStdString(),
+                          ui->textEdit_4->toPlainText().toStdString());
         RomanFraction fr3 = fr1 - fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 2;
@@ -70,8 +70,8 @@ void MainWindow::on_multi_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
-        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
-                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_3->toPlainText().toStdString(),
+                          ui->textEdit_4->toPlainText().toStdString());
         RomanFraction fr3 = fr1 * fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 3;
@@ -84,8 +84,8 @@ void MainWindow::on_divide_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->textEdit->toPlainText().toStdString(),
                           ui->textEdit_2->toPlainText().toStdString());
-        RomanFraction fr2(ui->textEdit_5->toPlainText().toStdString(),
-                          ui->textEdit_6->toPlainText().toStdString());
+        RomanFraction fr2(ui->textEdit_3->toPlainText().toStdString(),
+                          ui->textEdit_4->toPlainText().toStdString());
         RomanFraction fr3 = fr1 / fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 4;
