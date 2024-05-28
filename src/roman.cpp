@@ -1,18 +1,12 @@
 #include "../include/Roman.h"
+#include <iostream>
 extern bool is_reduced, normal;
 
 /* Constructors */
-RomanFraction::RomanFraction(int n, int d){
-    if (d < 0){
-        d = -d, n = -n;
-    }
-    numerator = arabicToRoman(n);
-    denominator = arabicToRoman(d);
-}
-
-RomanFraction::RomanFraction(string roman_num, string roman_denom){
-    numerator = roman_num;
-    denominator = roman_denom;
+RomanFraction::RomanFraction(string frac){
+    size_t pos = frac.find('/');
+    numerator = frac.substr(0, pos);
+    denominator = frac.substr(pos + 1);
     if (numerator[0] == denominator[0] && denominator[0] == '-'){
         numerator = numerator.substr(1);
         denominator = denominator.substr(1);
@@ -22,6 +16,14 @@ RomanFraction::RomanFraction(string roman_num, string roman_denom){
         numerator = '-' + numerator;
     }
 }
+RomanFraction::RomanFraction(int n, int d){
+    if (d < 0){
+        d = -d, n = -n;
+    }
+    numerator = arabicToRoman(n);
+    denominator = arabicToRoman(d);
+}
+
 /* Constructors */
 
 /* Math functions */
@@ -55,35 +57,62 @@ string RomanFraction::fraction(){
 }
 
 /* Convert functions */
-int RomanFraction::romanToArabic(string &roman){
-    int arabic = 0, i = 0;
-    if (roman[0] == '-') i = 1;
-    for (; i < roman.size(); i++) {
-        if (i + 1 < roman.size() && romanToArabicMap[roman[i]] < romanToArabicMap[roman[i + 1]]) {
-            arabic -= romanToArabicMap[roman[i]];
-        } else {
-            arabic += romanToArabicMap[roman[i]];
+
+int getRomanValue(char romanSymbol) {
+    switch (romanSymbol) {
+        case 'I':
+            return 1;
+        case 'V':
+            return 5;
+        case 'X':
+            return 10;
+        case 'L':
+            return 50;
+        case 'C':
+            return 100;
+        case 'D':
+            return 500;
+        case 'M':
+            return 1000;
         }
+        return 0;
+}
+
+int RomanFraction::romanToArabic(string &roman){
+    int arabic = 0, prevValue = 0;
+    int currentValue = 0;
+    for (int i = roman.length() - 1; i >= 0; i--) {
+        if (roman[i] == '-') return -arabic;
+
+        currentValue = getRomanValue(roman[i]);
+
+        if (currentValue < prevValue) {
+            arabic -= currentValue;
+        } else {
+            arabic += currentValue;
+        }
+        prevValue = currentValue;
     }
-    if (roman[0] == '-') return -arabic;
     return arabic;
 }
 
 string RomanFraction::arabicToRoman(int number) {
-    string result = "";
-    int flag = 0;
+    string roman = "";
+    int flag = 0, i = 0;
     if (number < 0){
         number *= (-1);
         flag = 1;
     }
-    for (auto it = arabicToRomanMap.rbegin(); it != arabicToRomanMap.rend(); ++it) {
-        while (number >= it->first) {
-            result += it->second;
-            number -= it->first;
+    while (number > 0) {
+        if (number >= arabicValues[i]) {
+            number -= arabicValues[i];
+            roman += romanValues[i];
+        } else {
+            i++;
         }
     }
-    if (flag) return '-' + result;
-    return result;
+    if (flag) return '-' + roman;
+    return roman;
 }
 /* Convert functions */
 
@@ -129,5 +158,17 @@ RomanFraction RomanFraction::operator /(RomanFraction& other){
     if (n != 0 && is_reduced)
         return RomanFraction(n / _gcd, d / _gcd);
     return RomanFraction(n, d);
+}
+
+bool RomanFraction::operator >(RomanFraction& other){
+    int _lcm = lcm(abs(romanToArabic(denominator)), abs(romanToArabic(other.denominator)));
+    return romanToArabic(numerator) * (_lcm / abs(romanToArabic(denominator))) >
+           romanToArabic(other.numerator) * (_lcm / abs(romanToArabic(other.denominator)));
+}
+
+bool RomanFraction::operator <(RomanFraction& other){
+    int _lcm = lcm(abs(romanToArabic(denominator)), abs(romanToArabic(other.denominator)));
+    return romanToArabic(numerator) * (_lcm / abs(romanToArabic(denominator))) <
+           romanToArabic(other.numerator) * (_lcm / abs(romanToArabic(other.denominator)));
 }
 /* Operators */

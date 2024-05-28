@@ -24,6 +24,8 @@ private slots:
     void on_standart_form_stateChanged(int);
     void on_checkBox_divide_stateChanged(int);
 
+    void on_difference_clicked();
+
 private:
     Ui::MainWindow *ui;
     int check_correct_input();

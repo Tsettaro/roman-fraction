@@ -7,16 +7,6 @@ using namespace std;
 
 class RomanFraction{
 private:
-    map<char, int> romanToArabicMap = {
-        {'I', 1},
-        {'V', 5},
-        {'X', 10},
-        {'L', 50},
-        {'C', 100},
-        {'D', 500},
-        {'M', 1000}
-    };
-
     map<int, string> arabicToRomanMap = {
         {1, "I"},
         {4, "IV"},
@@ -32,19 +22,23 @@ private:
         {1000, "M"}
     };
 
+    int arabicValues[13] = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+    string romanValues[13] = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
     string numerator;
     string denominator;
 
     int romanToArabic(string &);
     string arabicToRoman(int);
 public:
-    RomanFraction(string, string);
+    RomanFraction(string);
     RomanFraction(int, int);
 
     RomanFraction operator *(RomanFraction&);
     RomanFraction operator /(RomanFraction&);
     RomanFraction operator +(RomanFraction&);
     RomanFraction operator -(RomanFraction&);
+    bool operator >(RomanFraction&);
+    bool operator <(RomanFraction&);
 
     string fraction();
 };
