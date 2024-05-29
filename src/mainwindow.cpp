@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
+#include <QString>
 #include <regex>
 
 bool is_reduced = false;
@@ -129,3 +130,23 @@ void MainWindow::checkbox_detect(){
     default: break;
     }
 }
+
+void MainWindow::on_cp_1st_clicked(){
+    if (last_clicked && check_correct(ui->label_3->text().toStdString())){
+        QString text = ui->label_3->text();
+        ui->lineEdit->setText(text);
+    } else{
+        error();
+    }
+}
+
+
+void MainWindow::on_cp_2nd_clicked(){
+    if (last_clicked && check_correct(ui->label_3->text().toStdString())){
+        QString text = ui->label_3->text();
+        ui->lineEdit_2->setText(text);
+    } else{
+        error();
+    }
+}
+

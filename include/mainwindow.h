@@ -20,11 +20,13 @@ private slots:
     void on_minus_clicked();
     void on_multi_clicked();
     void on_divide_clicked();
+    void on_difference_clicked();
+    void on_cp_1st_clicked();
+    void on_cp_2nd_clicked();
 
     void on_standart_form_stateChanged(int);
     void on_checkBox_divide_stateChanged(int);
 
-    void on_difference_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -1,5 +1,4 @@
 #include "../include/Roman.h"
-#include <iostream>
 extern bool is_reduced, normal;
 
 /* Constructors */
@@ -47,11 +46,9 @@ string RomanFraction::fraction(){
         abs(romanToArabic(denominator)) > 3999) return "Sorry, but i can't return\nfraction";
     if (normal) {
         string a = to_string(romanToArabic(numerator)), b = to_string(romanToArabic(denominator));
-        string sep(max(a.size(), b.size()), '-');
-        return a + "\n" + sep + "\n" + b;
+        return a + "/" + b;
     } else {
-        string sep(max(numerator.size(), denominator.size()), '-');
-        return numerator + "\n" + sep + "\n"+ denominator;
+        return numerator + "/"+ denominator;
     }
 
 }
