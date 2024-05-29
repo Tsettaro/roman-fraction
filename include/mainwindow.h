@@ -33,5 +33,6 @@ private:
     int check_correct_input();
     void checkbox_detect();
     void error();
+    void vis_buttons(bool);
 };
 #endif // MAINWINDOW_H

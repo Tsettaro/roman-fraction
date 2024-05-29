@@ -21,8 +21,14 @@ int check_correct (const string &text){
     return 0;
 }
 
+void MainWindow::vis_buttons(bool flag){
+    ui->cp_1st->setVisible(flag);
+    ui->cp_2nd->setVisible(flag);
+}
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
+    vis_buttons(false);
 }
 
 MainWindow::~MainWindow(){
@@ -46,6 +52,7 @@ void MainWindow::on_plus_clicked(){
         RomanFraction fr3 = fr1 + fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 1;
+        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else{
         error();
     }
@@ -59,6 +66,7 @@ void MainWindow::on_minus_clicked(){
         RomanFraction fr3 = fr1 - fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 2;
+        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else{
         error();
     }
@@ -72,6 +80,7 @@ void MainWindow::on_multi_clicked(){
         RomanFraction fr3 = fr1 * fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 3;
+        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else{
         error();
     }
@@ -85,6 +94,7 @@ void MainWindow::on_divide_clicked(){
         RomanFraction fr3 = fr1 / fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
         last_clicked = 4;
+        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else {
         error();
     }
@@ -103,6 +113,7 @@ void MainWindow::on_difference_clicked(){
             ui->label_3->setText("Both");
         }
         last_clicked = 0;
+        vis_buttons(false);
     } else {
         error();
     }
