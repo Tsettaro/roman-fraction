@@ -22,6 +22,7 @@ int check_correct (const string &text){
 }
 
 void MainWindow::vis_buttons(bool flag){
+    ui->cp_layout_text->setVisible(flag);
     ui->cp_1st->setVisible(flag);
     ui->cp_2nd->setVisible(flag);
 }

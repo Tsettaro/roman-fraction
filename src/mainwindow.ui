@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>640</width>
-    <height>480</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,13 +19,13 @@
   <property name="minimumSize">
    <size>
     <width>640</width>
-    <height>480</height>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>640</width>
-    <height>480</height>
+    <height>500</height>
    </size>
   </property>
   <property name="font">
@@ -46,8 +46,8 @@
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>50</y>
+      <x>90</x>
+      <y>30</y>
       <width>432</width>
       <height>237</height>
      </rect>
@@ -272,8 +272,8 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>20</y>
+      <x>200</x>
+      <y>10</y>
       <width>211</width>
       <height>18</height>
      </rect>
@@ -289,7 +289,7 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>300</y>
+      <y>280</y>
       <width>515</width>
       <height>85</height>
      </rect>
@@ -317,7 +317,7 @@
        <number>2</number>
       </property>
       <item>
-       <layout class="QGridLayout" name="gridLayout">
+       <layout class="QGridLayout" name="addictional_func">
         <property name="leftMargin">
          <number>10</number>
         </property>
@@ -436,43 +436,57 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </layout>
     </widget>
    </widget>
-   <widget class="QPushButton" name="cp_1st">
+   <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>400</y>
-      <width>80</width>
-      <height>30</height>
+      <x>220</x>
+      <y>370</y>
+      <width>170</width>
+      <height>80</height>
      </rect>
     </property>
-    <property name="maximumSize">
-     <size>
-      <width>90</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="text">
-     <string>1st frac</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="cp_2nd">
-    <property name="geometry">
-     <rect>
-      <x>310</x>
-      <y>400</y>
-      <width>90</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>90</width>
-      <height>40</height>
-     </size>
-    </property>
-    <property name="text">
-     <string>2nd frac</string>
-    </property>
+    <layout class="QVBoxLayout" name="cp_layout">
+     <item>
+      <widget class="QLabel" name="cp_layout_text">
+       <property name="text">
+        <string>Copy result to</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="1" column="1">
+        <widget class="QPushButton" name="cp_2nd">
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>2nd frac</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="cp_1st">
+         <property name="maximumSize">
+          <size>
+           <width>90</width>
+           <height>40</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>1st frac</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
