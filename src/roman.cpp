@@ -4,8 +4,10 @@ extern bool is_reduced, normal;
 /* Constructors */
 RomanFraction::RomanFraction(string frac){
     size_t pos = frac.find('/');
+
     numerator = frac.substr(0, pos);
     denominator = frac.substr(pos + 1);
+
     if (numerator[0] == denominator[0] && denominator[0] == '-'){
         numerator = numerator.substr(1);
         denominator = denominator.substr(1);

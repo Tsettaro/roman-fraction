@@ -45,6 +45,7 @@ int MainWindow::check_correct_input(){
             check_correct(ui->lineEdit_2->text().toStdString()) == 1);
 }
 
+/* Arifmetic buttons */
 void MainWindow::on_plus_clicked(){
     if (check_correct_input()){
         RomanFraction fr1(ui->lineEdit->text().toStdString());
@@ -52,8 +53,11 @@ void MainWindow::on_plus_clicked(){
 
         RomanFraction fr3 = fr1 + fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
+
+        string txt = ui->label_3->text().toStdString();
+        vis_buttons(txt[0] != 'S' && txt[0] != 'N' ? true : false);
+
         last_clicked = 1;
-        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else{
         error();
     }
@@ -66,8 +70,11 @@ void MainWindow::on_minus_clicked(){
 
         RomanFraction fr3 = fr1 - fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
+
+        string txt = ui->label_3->text().toStdString();
+        vis_buttons(txt[0] != 'S' && txt[0] != 'N' ? true : false);
+
         last_clicked = 2;
-        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else{
         error();
     }
@@ -80,8 +87,11 @@ void MainWindow::on_multi_clicked(){
 
         RomanFraction fr3 = fr1 * fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
+
+        string txt = ui->label_3->text().toStdString();
+        vis_buttons(txt[0] != 'S' && txt[0] != 'N' ? true : false);
+
         last_clicked = 3;
-        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else{
         error();
     }
@@ -94,8 +104,11 @@ void MainWindow::on_divide_clicked(){
 
         RomanFraction fr3 = fr1 / fr2;
         ui->label_3->setText(QString::fromStdString(fr3.fraction()));
+
+        string txt = ui->label_3->text().toStdString();
+        vis_buttons(txt[0] != 'S' && txt[0] != 'N' ? true : false);
+
         last_clicked = 4;
-        if (ui->label->text()[0] != 'S') vis_buttons(true);
     } else {
         error();
     }
@@ -107,9 +120,9 @@ void MainWindow::on_difference_clicked(){
         RomanFraction fr2(ui->lineEdit_2->text().toStdString());
 
         if (fr1 > fr2){
-            ui->label_3->setText("First fr > second");
+            ui->label_3->setText("First > second");
         } else if (fr1 < fr2){
-            ui->label_3->setText("First fr < second");
+            ui->label_3->setText("First < second");
         } else {
             ui->label_3->setText("Both");
         }
@@ -119,6 +132,9 @@ void MainWindow::on_difference_clicked(){
         error();
     }
 }
+/* Arifmetic buttons */
+
+/* Additional buttons */
 void MainWindow::on_standart_form_stateChanged(int arg1){
     normal = arg1;
     checkbox_detect();
@@ -128,6 +144,7 @@ void MainWindow::on_checkBox_divide_stateChanged(int arg1){
     is_reduced = arg1;
     checkbox_detect();
 }
+/* Additional buttons */
 
 void MainWindow::checkbox_detect(){
     switch (last_clicked){
@@ -143,6 +160,7 @@ void MainWindow::checkbox_detect(){
     }
 }
 
+/* Copy value buttons */
 void MainWindow::on_cp_1st_clicked(){
     if (last_clicked && check_correct(ui->label_3->text().toStdString())){
         QString text = ui->label_3->text();
@@ -161,4 +179,4 @@ void MainWindow::on_cp_2nd_clicked(){
         error();
     }
 }
-
+/* Copy value buttons */
